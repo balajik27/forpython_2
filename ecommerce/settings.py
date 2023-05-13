@@ -9,13 +9,10 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-# print(3)
+
 import os
 from pathlib import Path
-# from re import S
-# from telnetlib import SE
-# APPEND_SLASH=False
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -23,16 +20,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = 'django-insecure-#lz%#n9@v$9500z8-_nl91y#gk&d8b8!-y8cg(7ueasx#5%p@^'
 
-with open(os.path.join(BASE_DIR, 'secret_key.txt')) as f:
-    SECRET_KEY = f.read().strip()
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*','127.0.0.1']
-
-
-# Application definition
+ALLOWED_HOSTS = [] 
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -42,16 +35,19 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'product',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'ecommerce.urls'
@@ -84,7 +80,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -121,19 +116,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [BASE_DIR/'static']
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# or STATIC_ROOT = BASE_DIR/'static'
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# SESSION_COOKIE_SECURE = True
-# CSRF_COOKIE_SECURE = True
-# SECURE_SSL_REDIRECT = True
-# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-#MAKING WEBSITE SHOULD NOT CONNECT VIA AN INSECURE CONNECTION (IE, HTTP)
-# SECURE_HSTS_SECONDS = 31536000 #1YEAR
-# SECURE_HSTS_PRELOAD = True
-# SECURE_HSTS_INCLUDE_SUBDOMANINS = True

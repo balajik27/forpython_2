@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib import auth
 from . models import User_Details
-print(12)
+
 def login(request):
     if request.method == 'POST':
         uname = request.POST['User']
